@@ -56,6 +56,18 @@ flowchart LR
 | **訂正・修正** | AIの候補と確定した人物を分離、本文修正は KEEP / ADD / REMOVE |
 | **テスト** | 128件（人物判定 74件） |
 
+#### 同時保存の追加検証（2026-10-06）
+
+手元のWindows PC、Java 21、PostgreSQL 17.11、READ COMMITTEDで、同じ人物に2件の日記を並列保存する条件を各50回測定しました。
+
+| 条件 | 既存の集計 | 初登場 |
+| --- | --- | --- |
+| ロックなし | 0/50正常（古い集計の上書き） | 0/50正常（主キー衝突） |
+| 読んでからロック | 0/50正常（古い集計） | 0/50正常（古い集計） |
+| 現在の順序：ロック → 読み取り | 50/50正常 | 50/50正常 |
+
+現行の `PersonAggregateService` を無変更で再コンパイルし、JDBCのリポジトリアダプターで測定しています。比較条件ではバリアを使い、競合する読み取りを意図的に同期しました。通常利用時の障害率や性能測定を示すものではありません。Spring/JPAと日記API全体の統合検証は今後の課題です。
+
 🔗 **Code** ▸ [Backend（Curator）](https://github.com/hanyx-00/tada-was/tree/main/src/main/java/com/tada/tada/curator) · [Frontend（Curator）](https://github.com/hanyx-00/tada-frontend/tree/main/domains/curator)　|　**Demo** ▸ [tada-frontend-seven.vercel.app](https://tada-frontend-seven.vercel.app)
 
 ---
