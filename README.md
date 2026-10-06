@@ -52,11 +52,11 @@ flowchart LR
 | | 内容 |
 | --- | --- |
 | **人物判定** | 似た名前を誤ってまとめない4段階の判定 |
-| **同時保存** | 人物の行をロックしてから読む ➜ 実験で400回とも正確 |
+| **同時保存** | 人物の行をロックしてから読み、上書きと主キーの衝突を防ぐ |
 | **訂正・修正** | AIの候補と確定した人物を分離、本文修正は KEEP / ADD / REMOVE |
-| **テスト** | 124件（人物判定 74件） |
+| **テスト** | 128件（人物判定 74件） |
 
-🔗 **Code** ▸ [Backend](https://github.com/hanyx-00/tada-was/tree/develop) · [Frontend](https://github.com/hanyx-00/tada-frontend)　|　**Demo** ▸ [tada-frontend-seven.vercel.app](https://tada-frontend-seven.vercel.app)
+🔗 **Code** ▸ [Backend（Curator）](https://github.com/hanyx-00/tada-was/tree/main/src/main/java/com/tada/tada/curator) · [Frontend（Curator）](https://github.com/hanyx-00/tada-frontend/tree/main/domains/curator)　|　**Demo** ▸ [tada-frontend-seven.vercel.app](https://tada-frontend-seven.vercel.app)
 
 ---
 
@@ -95,7 +95,7 @@ flowchart LR
 
 1. **業務のルールを先に整理する** — 入力・単位・判断の条件を決めてから実装する
 2. **データの整合性を守る** — 訂正や同時保存のあとも、数がずれない構造にする
-3. **結果を確かめる** — テスト・実験・手計算で、判断の根拠を残す
+3. **結果を確かめる** — テストと手計算で、判断の根拠を残す
 
 ---
 
