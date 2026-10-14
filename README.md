@@ -6,7 +6,33 @@
 
 *業務のルールを、正しく動くデータと計算に。*
 
+<br>
+
+![Java](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
+![JPA](https://img.shields.io/badge/Spring_Data_JPA-59666C?style=for-the-badge&logo=hibernate&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+<br>
+![JUnit5](https://img.shields.io/badge/JUnit_5-25A162?style=for-the-badge&logo=junit5&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
+
 </div>
+
+---
+
+## 👋 About
+
+大学で **物流学** を学び、在庫・発注・資材計画といった「業務のルール」に触れてきました。<br>
+そのルールを、**データがずれず、計算が正しく、あとから根拠を説明できる** システムとして実装することに関心があり、バックエンドエンジニアを目指しています。
+
+| | |
+| --- | --- |
+| 🎓 **学歴** | 慶星大学校（韓国・釜山）経済物流学部 物流学科 卒業（2025.02） |
+| 💻 **研修** | Data Science Academy「Smart Cloud IT マスター AX/DX」日本 SW Developer 課程（2026.11 修了予定） |
+| 🎯 **志望** | 日本の IT 企業でのバックエンド開発 |
 
 ---
 
@@ -14,10 +40,10 @@
 
 | 分野 | 技術 |
 | --- | --- |
-| Backend | `Java` `Spring Boot` `Spring Data JPA` |
-| Database | `PostgreSQL` |
-| Test | `JUnit 5` `Mockito` `AssertJ` |
-| Frontend | `React` `Next.js` `TypeScript` |
+| Backend | `Java 17 / 21` `Spring Boot` `Spring Data JPA` `Spring Security` |
+| Database | `PostgreSQL` `H2（テスト）` |
+| Test / CI | `JUnit 5` `Mockito` `AssertJ` `GitHub Actions` |
+| Frontend | `React` `Next.js` `TypeScript` `TanStack Query` `Tailwind CSS` |
 
 ---
 
@@ -51,21 +77,23 @@ flowchart LR
 
 | | 内容 |
 | --- | --- |
-| **人物判定** | 似た名前を誤ってまとめない4段階の判定 |
+| **人物判定** | 似た名前を誤ってまとめない4段階の判定（EXACT → SIMILAR → 履歴 → NEW） |
+| **整合性** | 日記の保存と人物データを同じトランザクションで処理し、片方だけ残らないようにする |
 | **同時保存** | 人物の行をロックしてから読み、上書きと主キーの衝突を防ぐ（再現検証 100/100 正常・2条件×50回） |
 | **訂正・修正** | AIの候補と確定した人物を分離、本文修正は KEEP / ADD / REMOVE |
 | **テスト** | 128件（人物判定 74件） |
 
+📖 **詳しい説明** ▸ [**TADA README（日本語）**](https://github.com/hanyx-00/tada-was#readme)<br>
 🔗 **Code** ▸ [Backend（Curator）](https://github.com/hanyx-00/tada-was/tree/main/src/main/java/com/tada/tada/curator) · [Frontend（Curator）](https://github.com/hanyx-00/tada-frontend/tree/main/domains/curator)　|　**Demo** ▸ [tada-frontend-seven.vercel.app](https://tada-frontend-seven.vercel.app)
 
 ---
 
 ## 📦 RESTOCK ｜ 在庫発注シミュレーター
 
-> **個人開発** · 2026.09 · 担当：設計から画面まですべて
+> **個人開発** · 2026.09 · 担当：設計から画面・CIまですべて
 
 需要の履歴から、在庫の発注量と発注日を計算するサービスです。<br>
-ABC分析・EOQ・安全在庫・MRPを、バックエンドから画面まで実装しました。
+物流学科で学んだ ABC分析・EOQ・安全在庫・MRP を、バックエンドから画面まで実装しました。
 
 ```mermaid
 flowchart LR
@@ -84,10 +112,11 @@ flowchart LR
 | --- | --- |
 | **安全在庫** | ABC等級に応じて基準（サービス水準）を変える |
 | **MRP** | 部品構成と生産計画から、発注日を逆算する |
-| **検証** | 計算のテスト7件と手計算で結果を確認 |
+| **正確さ** | `BigDecimal` で計算、うるう年・需要0の日も考慮 |
+| **検証** | 計算のテストと手計算で結果を照合、GitHub Actions で自動チェック |
 | **構成** | Java 21 · Spring Boot 4.1 · PostgreSQL · React 19 |
 
-🔗 **Code** ▸ [restock](https://github.com/hanyx-00/restock)
+📖 **詳しい説明** ▸ [**RESTOCK README**](https://github.com/hanyx-00/restock#readme)　|　🔗 **Code** ▸ [restock](https://github.com/hanyx-00/restock)
 
 ---
 
